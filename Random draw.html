@@ -1,0 +1,133 @@
+<!--This is an open-source random draw web-app created by Chenoa Liu (github liuchen37), feel free to modify it :)-->
+<!DOCTYPE html>
+<html lang="en">
+<!--version 2: Fix bugs-->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Draw App</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    background-color: #FF3300;
+    color: #FFF143;
+  }
+
+  h2 {
+    font-size: 2em;
+    margin: 0.5em 0;
+    line-height: 1.2;
+  }
+
+  button {
+    font-size: 1.5em;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #FFF;
+    color: #FF3300;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #E62E00;
+  }
+
+  p {
+    font-size: 1.2em;
+    margin: 5px 0;
+  }
+
+  #firstPrize, #secondPrize, #participationPrizes {
+    margin-bottom: 20px;
+  }
+
+  .prize-container {
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Joyeux Nouvel An chinois !</h2>
+  <h2>中国新年快乐！</h2>
+
+  <div class="prize-container">
+    <button onclick="drawFirstPrize()">1er prix / 一等奖</button>
+    <p id="firstPrize"></p>
+  </div>
+
+  <div class="prize-container">
+    <button onclick="drawSecondPrize()">2ème prix / 二等奖</button>
+    <p id="secondPrize"></p>
+  </div>
+
+  <div class="prize-container">
+    <button onclick="drawParticipationRewards()">Prix de participation / 参与奖</button>
+    <p id="participationPrizes"></p>
+  </div>
+</div>
+
+<script>
+const localNumberRanges = {
+  '1-A': 100,
+  '1-B': 35,
+  '1-C': 96,
+  '2-A': 100,
+  '2-B': 100,
+  '2-C': 100
+};
+
+function generateTicketNumber(exclude = []) {
+  let ticketNumber;
+  do {
+    const levelNumber = Math.floor(Math.random() * 2) + 1; // 1 or 2
+    const areaCodes = ['A', 'B', 'C'];
+    const areaCode = areaCodes[Math.floor(Math.random() * areaCodes.length)];
+    const maxLocalNumber = localNumberRanges[`${levelNumber}-${areaCode}`];
+    const localNumber = Math.floor(Math.random() * maxLocalNumber) + 1; // 1 to maxLocalNumber
+    ticketNumber = `${levelNumber}-${areaCode}-${localNumber.toString().padStart(3, '0')}`;
+  } while (exclude.includes(ticketNumber)); // Ensure the ticket hasn't already been drawn
+  return ticketNumber;
+}
+
+function drawPrizes(prizeCount, preventDuplicates = false) {
+  let winners = [];
+  let drawnTickets = [];
+
+  for (let i = 0; i < prizeCount; i++) {
+    let ticketNumber = generateTicketNumber(preventDuplicates ? drawnTickets : []);
+    winners.push(ticketNumber);
+    drawnTickets.push(ticketNumber); // Keep track of the drawn ticket
+  }
+  
+  return winners;
+}
+
+function drawFirstPrize() {
+  const firstPrize = drawPrizes(1);
+  document.getElementById('firstPrize').textContent = `1st Prize: ${firstPrize}`;
+}
+
+function drawSecondPrize() {
+  const secondPrize = drawPrizes(1);
+  document.getElementById('secondPrize').textContent = `2nd Prize: ${secondPrize}`;
+}
+
+function drawParticipationRewards() {
+  const participationWinners = drawPrizes(50, true); // Ensure unique winners
+  document.getElementById('participationPrizes').textContent = `Participation Rewards: ${participationWinners.join(', ')}`;
+}
+</script>
+
+</body>
+</html>
