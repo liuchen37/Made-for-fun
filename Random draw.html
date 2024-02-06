@@ -1,13 +1,13 @@
-<!--This is an open-source random draw web-app created by Chenoa Liu (github liuchen37), feel free to modify it :)-->
 <!DOCTYPE html>
 <html lang="en">
-<!--version 2: Fix bugs-->
+<!--Chenoa, opensource Github liuchen37-->
+<!--version 2b: Update disabled botton appreance-->
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Random Draw App</title>
-<style>
-  body {
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Draw App</title>
+  <style>
+body {
     font-family: Arial, sans-serif;
     text-align: center;
     margin: 0;
@@ -53,7 +53,14 @@
   .prize-container {
     margin-top: 20px;
   }
-</style>
+    
+    
+    /* Updated style for disabled button */
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  </style>
 </head>
 <body>
 
@@ -126,6 +133,25 @@ function drawSecondPrize() {
 function drawParticipationRewards() {
   const participationWinners = drawPrizes(50, true); // Ensure unique winners
   document.getElementById('participationPrizes').textContent = `Participation Rewards: ${participationWinners.join(', ')}`;
+}
+
+// Update the draw functions to disable buttons
+function drawFirstPrize() {
+  const firstPrize = drawPrizes(1);
+  document.getElementById('firstPrize').textContent = `1st Prize: ${firstPrize}`;
+  document.querySelector("button[onclick='drawFirstPrize()']").disabled = true;
+}
+
+function drawSecondPrize() {
+  const secondPrize = drawPrizes(1);
+  document.getElementById('secondPrize').textContent = `2nd Prize: ${secondPrize}`;
+  document.querySelector("button[onclick='drawSecondPrize()']").disabled = true;
+}
+
+function drawParticipationRewards() {
+  const participationWinners = drawPrizes(50, true); // Ensure unique winners
+  document.getElementById('participationPrizes').textContent = `Participation Rewards: ${participationWinners.join(', ')}`;
+  document.querySelector("button[onclick='drawParticipationRewards()']").disabled = true;
 }
 </script>
 
