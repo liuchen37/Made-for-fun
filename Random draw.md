@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <!--Chenoa, opensource Github liuchen37-->
-<!--version 2b: Update disabled botton appreance-->
+<!--version 2b: Update disabled botton appearance-->
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -169,7 +169,7 @@ function drawParticipationRewards() {
 <!DOCTYPE html>
 <html lang="en">
 <!--Chenoa, opensource Github liuchen37-->
-<!--version 3.2a: 1st and 2nd prize only, updated appreances-->
+<!--version 3.2a: 1st and 2nd prize only, updated appearances-->
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -324,12 +324,12 @@ function drawSecondPrize() {
 </body>
 </html>
 ```
-### participation prizes only, with background
+### Participation prizes only, with background
 ```html
 <!DOCTYPE html>
 <html lang="en">
 <!--Chenoa, opensource Github liuchen37-->
-<!--version 3.2b: participation prize only, updated appreances-->
+<!--version 3.2b: participation prize only, updated appearances-->
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
