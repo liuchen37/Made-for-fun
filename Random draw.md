@@ -462,4 +462,4 @@ function drawParticipationRewards() {
 </html>
 ```
 
-# Bon nouvel an chinois!
+# *Bon nouvel an chinois!*
