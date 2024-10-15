@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!-- <html lang="en"> -->
+
+<head>
+	<meta charset="utf-8">
+	<title>LC的细胞计数器</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+	<style type="text/css">
+	</style>
+</head>
+
+<body>
+	<div id="cellCounter">
+		<div style="width: 100%;height: 100px;color: rgb(0, 0, 0);display:flex">
+			<div v-for="(i,index) in qrp7sxzv" style="width: 20%;">
+				<span style="font-size: 20px;background-color: aqua;">&ensp;Cell
+					{{index+1}}:<span>{{i}}</span>&ensp;</span>
+			</div>
+		</div>
+		<span>Average cell count: {{qnejh35r}}</span>
+		<br>
+		<button @click="pjzv7wev">{{uhp3v8fb}}</button>
+		<input v-if="!bd652g52" type="number" v-model.number="t8sxq22c" placeholder="请输入Df" />
+		<br>
+		<span>Concentration: {{uyhdxc9t}}</span>
+		<br>
+		<!-- <div style="height: 50vh"></div> -->
+		<br>
+		<span style="width: 100%; font-size: 5px;color: rgb(194, 194, 194);text-align: center">Chen's Cell Counter&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Powered by SKYY</span>
+	</div>
+	<script>
+		new Vue({
+			el: "#cellCounter",
+			data: {
+				t8sxq22c: null,
+				qrp7sxzv: [0, 0, 0, 0, 0],
+				bd652g52: 1,
+				qnejh35r: 0,
+				uhp3v8fb: '开始键入DF',
+				uyhdxc9t: 0,
+			},
+			watch: {
+				bd652g52(val) {
+					this.uhp3v8fb = val ? '开始键入DF' : '停止键入DF';
+					if (!val) {
+						document.onkeydown = null;
+					} else {
+						this.k556rvaw()
+					}
+				},
+				qrp7sxzv(val) {
+					let xecz8jsx = 0;
+					let ag738z2d = 0
+					val.forEach(e => {
+						if (e) { xecz8jsx++; ag738z2d += e }
+					});
+					this.qnejh35r = ag738z2d / xecz8jsx;
+				},
+				t8sxq22c(val) {
+					this.uyhdxc9t = this.qnejh35r * val * 10000;
+				}
+			},
+			mounted() {
+				this.k556rvaw()
+			},
+			methods: {
+				pjzv7wev: function () {
+					this.bd652g52 = this.bd652g52 ? 0 : 1;
+				},
+				k556rvaw: function () {
+					document.onkeydown = (e) => {
+						switch (e.keyCode) {
+							case 49:
+								this.$set(this.qrp7sxzv, 0, this.qrp7sxzv[0] + 1)
+								break;
+							case 50:
+								this.$set(this.qrp7sxzv, 1, this.qrp7sxzv[1] + 1)
+								break;
+							case 51:
+								this.$set(this.qrp7sxzv, 2, this.qrp7sxzv[2] + 1)
+								break;
+							case 52:
+								this.$set(this.qrp7sxzv, 3, this.qrp7sxzv[3] + 1)
+								break;
+							case 53:
+								this.$set(this.qrp7sxzv, 4, this.qrp7sxzv[4] + 1)
+								break;
+						}
+					}
+				}
+			}
+
+		})
+	</script>
+</body>
+
+</html>
